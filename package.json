@@ -1,0 +1,24 @@
+{
+  "name": "cargo",
+  "version": "1.0.0",
+  "description": "cargoanywhere",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jgeringer/cargo.git"
+  },
+  "author": "joe geringer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jgeringer/cargo/issues"
+  },
+  "homepage": "https://github.com/jgeringer/cargo#readme",
+  "devDependencies": {
+    "browser-sync": "^2.17.0",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^2.3.2"
+  }
+}
