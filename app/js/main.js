@@ -16,8 +16,6 @@ shipmentText = '',
 myHistory = JSON.parse(localStorage.getItem('myHistoryInfo')) || [];
 
 
-
-
 $('.test').on('click', function(e){
   e.preventDefault();
   $('.trackingForm').trigger('submit');
@@ -27,8 +25,6 @@ $('.test').on('click', function(e){
   $load.removeClass('active');
   $frame.addClass('active');
 });
-
-
 
 
 $('#search').on('submit', function(e){
@@ -113,11 +109,6 @@ $(document).on('click', '#myHistory span', function(e){
   $('.recent-container').slideUp(function(){
 
   });
-
-
-
-
-
 });
 
 
