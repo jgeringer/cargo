@@ -23,7 +23,7 @@
 
     </head>
     <body>
-        
+
             <script>
                 var apikey = "AIzaSyAFLzyniNxXIFr1Pd_sVKgI5LrYyemH2wM",                    
                     spreadsheetId = "1-AIUwEL-MjVDNxZeR6wlBLsnw2zxeU7k1lC_28ONqQI",
@@ -40,8 +40,7 @@
                 //gets all data
                 $.ajax({
                     url:url6,
-                    dataType:'json',
-                    complete:function(data) {
+                    success:function(data) {
                         cargoData = data.responseJSON.values;
                         console.log('cargoData:', cargoData);
                         //lodash filter by input ""
