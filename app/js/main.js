@@ -38,7 +38,8 @@ $('#search').on('submit', function(e){
           $lastEight = $this.val().slice(3,11),
           $code = '';
 
-          _gaq.push(['_trackEvent', 'Tracking Number', $fullNumber]);
+          //_gaq.push(['_trackEvent', 'Tracking Number', $fullNumber]);
+          window.ga('send', 'event', 'Submit', 'Tracking Number', $fullNumber, { 'nonInteraction': 1 });
 
           $('.page-loader').addClass('active');
 

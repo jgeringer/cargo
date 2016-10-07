@@ -1,0 +1,124 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>json test</title>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="../js/lib/jquery.ajax-cross-origin.min.js"></script>
+        <script src="//cdn.jsdelivr.net/lodash/4.16.4/lodash.min.js"></script>
+
+         <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-63271840-1', 'auto');
+          ga('send', 'pageview');
+      </script>
+
+    </head>
+    <body>
+        
+            <script>
+                var apikey = "AIzaSyAFLzyniNxXIFr1Pd_sVKgI5LrYyemH2wM",                    
+                    spreadsheetId = "1-AIUwEL-MjVDNxZeR6wlBLsnw2zxeU7k1lC_28ONqQI",
+                    // url  = "https://sheets.googleapis.com/v4/spreadsheets/"+ spreadsheetId +"/values:batchGet?majorDimension=ROWS&ranges=A2%3AB3&key="+ apikey +"&alt=json",
+                    // url2 = "https://sheets.googleapis.com/v4/spreadsheets/"+ spreadsheetId +"/values/CargoData!A1:D5"+ "?key="+ apikey +"&alt=json",
+                    // url3 = "https://sheets.googleapis.com/v4/spreadsheets/"+ spreadsheetId +"/values/CargoData!A1:D5"+ "?majorDimension=COLUMNS" +"&key="+ apikey +"&alt=json",
+                    // url4 = "https://sheets.googleapis.com/v4/spreadsheets/"+ spreadsheetId +"/values/CargoData!A1:D5"+ "?majorDimension=ROWS" +"&key="+ apikey +"&alt=json",
+                    url6 = "https://sheets.googleapis.com/v4/spreadsheets/"+ spreadsheetId +"/values/CargoData!A1:J10"+ "?key="+ apikey +"&alt=json",
+                    cargoData,
+                    cargoDataHeader,
+                    cargoDataFinal = [];
+
+               
+                //gets all data
+                $.ajax({
+                    url:url6,
+                    dataType:'json',
+                    complete:function(data) {
+                        cargoData = data.responseJSON.values;
+                        console.log('cargoData:', cargoData);
+                        //lodash filter by input ""
+                        //_.findIndex(cargoData, ['001']);
+
+                        //get row data by balue of column
+
+                        cargoDataHeader = cargoData[0];
+
+                        for(i=1; i<cargoData.length;i++){
+                            console.log(_.zipObject(cargoDataHeader, cargoData[i]));
+                            var tempObj = _.zipObject(cargoDataHeader, cargoData[i]);
+                            cargoDataFinal.push(tempObj);
+                        }
+
+                    },
+                });
+
+                //lookup(001)
+                function lookup(lookupPrefix){
+                    var lookupIndex = _.findIndex(cargoDataFinal, {airline: lookupPrefix });
+                    console.log('full object:', cargoDataFinal[lookupIndex]);
+                }
+
+                // $.ajax({
+                //     url:url5,
+                //     complete:function(data) {
+                //         // data.feed.entry is an array of objects that represent each cell
+                //         console.log('data:', data);
+                //     },
+                // });
+
+
+
+                // //gets all rows
+                // $.ajax({
+                //     url:url4,
+                //     dataType:'json',
+                //     complete:function(data) {
+                //         // data.feed.entry is an array of objects that represent each cell
+                //         console.log('data:', data.responseJSON.values);
+                //     },
+                // });
+
+                // //gets all columns
+                // $.ajax({
+                //     url:url3,
+                //     dataType:'json',
+                //     complete:function(data) {
+                //         // data.feed.entry is an array of objects that represent each cell
+                //         console.log('data:', data.responseJSON.values);
+                //     },
+                // });
+
+                // //gets all data
+                // $.ajax({
+                //     url:url2,
+                //     dataType:'json',
+                //     complete:function(data) {
+                //         // data.feed.entry is an array of objects that represent each cell
+                //         console.log('data:', data.responseJSON.values);
+                //     },
+                // });
+
+                // $.ajax({
+                //     url:url,
+                //     dataType:'json',
+                //     complete:function(data) {
+                //         // data.feed.entry is an array of objects that represent each cell
+                //         console.log('data:', data.responseJSON.valueRanges[0].values);
+                //     },
+                // });
+
+
+
+            </script>
+
+
+    </body>
+</html>
